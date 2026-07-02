@@ -127,3 +127,7 @@ This is a college/educational project. Before deploying for real use:
 - Add rate limiting at the web server/load balancer level in addition to the
   application-level lockout.
 - Consider adding email verification on registration.
+
+# Author
+Aman Kumar Rajpoot
+
