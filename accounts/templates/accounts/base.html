@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Secure Login System{% endblock %}</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0a0e1a;
+    color: #c9d1d9;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .card {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 14px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 420px;
+  }
+  .card.wide { max-width: 520px; }
+  h1 {
+    font-size: 1.35rem;
+    color: #58a6ff;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    text-align: center;
+  }
+  .subtitle { text-align: center; font-size: 0.82rem; color: #6e7681; margin-bottom: 1.5rem; }
+  label { display: block; font-size: 0.82rem; color: #8b949e; margin-bottom: 5px; margin-top: 14px; }
+  label:first-of-type { margin-top: 0; }
+  input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 0.6rem 0.85rem;
+    color: #c9d1d9;
+    font-size: 0.92rem;
+    outline: none;
+    transition: border 0.2s;
+  }
+  input:focus { border-color: #58a6ff; }
+  .btn {
+    width: 100%;
+    background: #238636;
+    border: 1px solid #2ea043;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.65rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 1.2rem;
+    transition: background 0.2s;
+  }
+  .btn:hover { background: #2ea043; }
+  .btn-secondary { background: #21262d; border-color: #30363d; }
+  .btn-secondary:hover { background: #30363d; }
+  .btn-danger { background: #6e1a1a; border-color: #8b2727; }
+  .btn-danger:hover { background: #8b2727; }
+  .footer-link { text-align: center; font-size: 0.82rem; color: #6e7681; margin-top: 1.2rem; }
+  .footer-link a { color: #58a6ff; text-decoration: none; }
+  .footer-link a:hover { text-decoration: underline; }
+  .errorlist { list-style: none; color: #f85149; font-size: 0.78rem; margin-top: 4px; }
+  .messages { list-style: none; margin-bottom: 1.2rem; }
+  .messages li {
+    padding: 8px 12px; border-radius: 8px; font-size: 0.82rem; margin-bottom: 6px;
+  }
+  .messages .success { background: #0f2d1a; color: #2ea043; border: 1px solid #196127; }
+  .messages .error   { background: #1c0000; color: #f85149; border: 1px solid #6e1a1a; }
+  .messages .info    { background: #0c1b2e; color: #58a6ff; border: 1px solid #1f4070; }
+  .helptext { font-size: 0.72rem; color: #6e7681; margin-top: 4px; }
+  .lock-icon { text-align: center; font-size: 2.5rem; margin-bottom: 0.5rem; }
+</style>
+</head>
+<body>
+<div class="card{% block card_class %}{% endblock %}">
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% block content %}{% endblock %}
+</div>
+</body>
+</html>

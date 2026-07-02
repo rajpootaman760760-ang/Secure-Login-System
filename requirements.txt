@@ -1,0 +1,4 @@
+Django>=4.2,<7.0
+pyotp>=2.10.0
+qrcode>=8.0
+argon2-cffi>=23.0.0

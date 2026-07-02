@@ -1,0 +1,27 @@
+{% extends "accounts/base.html" %}
+{% block title %}Set up 2FA — Secure Login System{% endblock %}
+{% block card_class %} wide{% endblock %}
+{% block content %}
+  <h1>📱 Set Up Two-Factor Authentication</h1>
+  <p class="subtitle">Scan this QR code with Google Authenticator, Authy, or any TOTP app</p>
+
+  <div style="text-align:center; background:#fff; border-radius:10px; padding:16px; margin-bottom:1rem;">
+    <img src="data:image/png;base64,{{ qr_base64 }}" alt="2FA QR Code" style="max-width:220px;">
+  </div>
+
+  <p class="helptext" style="text-align:center; margin-bottom:1rem;">
+    Can't scan? Enter this code manually: <br>
+    <code style="color:#58a6ff; font-size:0.85rem;">{{ secret }}</code>
+  </p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <label for="{{ form.code.id_for_label }}">Enter the 6-digit code to confirm setup</label>
+    {{ form.code }}
+    {{ form.code.errors }}
+
+    <button type="submit" class="btn">Enable 2FA</button>
+  </form>
+
+  <p class="footer-link"><a href="{% url 'dashboard' %}">Cancel</a></p>
+{% endblock %}

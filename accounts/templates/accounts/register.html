@@ -1,0 +1,30 @@
+{% extends "accounts/base.html" %}
+{% block title %}Register — Secure Login System{% endblock %}
+{% block content %}
+  <h1>🔐 Create Account</h1>
+  <p class="subtitle">Secure Login System</p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <label for="{{ form.username.id_for_label }}">Username</label>
+    {{ form.username }}
+    {{ form.username.errors }}
+
+    <label for="{{ form.email.id_for_label }}">Email</label>
+    {{ form.email }}
+    {{ form.email.errors }}
+
+    <label for="{{ form.password1.id_for_label }}">Password</label>
+    {{ form.password1 }}
+    {{ form.password1.errors }}
+    <p class="helptext">Min. 10 characters. Avoid common passwords or ones similar to your username.</p>
+
+    <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+    {{ form.password2 }}
+    {{ form.password2.errors }}
+
+    <button type="submit" class="btn">Create Account</button>
+  </form>
+
+  <p class="footer-link">Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+{% endblock %}

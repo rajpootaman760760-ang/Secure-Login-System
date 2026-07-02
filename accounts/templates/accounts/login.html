@@ -1,0 +1,19 @@
+{% extends "accounts/base.html" %}
+{% block title %}Login — Secure Login System{% endblock %}
+{% block content %}
+  <h1>🔐 Welcome Back</h1>
+  <p class="subtitle">Log in to your account</p>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <label for="{{ form.username.id_for_label }}">Username</label>
+    {{ form.username }}
+
+    <label for="{{ form.password.id_for_label }}">Password</label>
+    {{ form.password }}
+
+    <button type="submit" class="btn">Log In</button>
+  </form>
+
+  <p class="footer-link">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+{% endblock %}

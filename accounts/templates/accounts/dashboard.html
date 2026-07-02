@@ -1,0 +1,34 @@
+{% extends "accounts/base.html" %}
+{% block title %}Dashboard — Secure Login System{% endblock %}
+{% block content %}
+  <h1>✅ Dashboard</h1>
+  <p class="subtitle">Welcome, {{ user.username }}!</p>
+
+  <div style="background:#161b22; border-radius:10px; padding:14px; margin-bottom:1rem; font-size:0.85rem;">
+    <p style="margin-bottom:6px;"><strong>Username:</strong> {{ user.username }}</p>
+    <p style="margin-bottom:6px;"><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>2FA Status:</strong>
+      {% if user.is_2fa_enabled %}
+        <span style="color:#2ea043;">Enabled ✓</span>
+      {% else %}
+        <span style="color:#e3b341;">Disabled</span>
+      {% endif %}
+    </p>
+  </div>
+
+  {% if user.is_2fa_enabled %}
+    <form method="post" action="{% url 'disable_2fa' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Disable 2FA</button>
+    </form>
+  {% else %}
+    <a href="{% url 'setup_2fa' %}" style="text-decoration:none;">
+      <button type="button" class="btn">Enable Two-Factor Authentication</button>
+    </a>
+  {% endif %}
+
+  <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-secondary">Log Out</button>
+  </form>
+{% endblock %}
