@@ -128,7 +128,7 @@ This is a college/educational project. Before deploying for real use:
   application-level lockout.
 - Consider adding email verification on registration.
 
-# Author
+# Author 
 Aman Kumar Rajpoot
 
 
